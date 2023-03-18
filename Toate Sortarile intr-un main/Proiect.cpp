@@ -13,8 +13,8 @@ ifstream f("date.in");
 ofstream g("Test.out");
 
 int temp[501];
-int v[1001], p10=1, p16=1, n, aux[1001];
-int fr[1001];   
+int v[10000001], p10=1, p16=1, n, aux[10000001];
+int fr[1000001];   
 int maxi;
 deque <int> baza10[10], baza16[16];
 int nrcifremax, nrc, pasimax;
@@ -133,9 +133,9 @@ void ResetareVector()
 
 int main()
 {
-  n=1001;
+  n=10000001;
   for (int i=0;i<n;i++)
-    { v[i]=1000000000+rand()%2147483646;
+    { v[i]=1000001+rand()%2147483646;
       maxi=max(v[i],maxi);
       int x=v[i];
       nrc=0;
@@ -218,13 +218,13 @@ int main()
 
 //Insertion Sort
 
-  auto start5 = high_resolution_clock::now();
-  InsertionSort();
-  auto stop5 = high_resolution_clock::now();
-  auto duration5 = duration_cast<microseconds>(stop5 - start5);
+  // auto start5 = high_resolution_clock::now();
+  // InsertionSort();
+  // auto stop5 = high_resolution_clock::now();
+  // auto duration5 = duration_cast<microseconds>(stop5 - start5);
 
-  cout << "Time taken by function InsertionSort: "
-       << duration5.count() << " microseconds" << endl;
+  // cout << "Time taken by function InsertionSort: "
+  //      << duration5.count() << " microseconds" << endl;
 
 //IntroSort
 
