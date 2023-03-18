@@ -4,16 +4,17 @@
 #include <chrono>
 #include <fstream>
 #include <cstdlib>
+#include <algorithm>
 
 using namespace std;
 using namespace std::chrono;
 
-ifstream f("algsort.in");
+ifstream f("date.in");
 ofstream g("Test.out");
 
 int temp[501];
-int v[10000001], p10=1, p16=1, n, aux[10000001];
-int fr[1000001];   
+int v[1001], p10=1, p16=1, n, aux[1001];
+int fr[1001];   
 int maxi;
 deque <int> baza10[10], baza16[16];
 int nrcifremax, nrc, pasimax;
@@ -101,7 +102,6 @@ void ShellSort()
       }
       interval/=2;
     }
-
 }
 
 void CountSort()
@@ -133,26 +133,8 @@ void ResetareVector()
 
 int main()
 {
-  // for (int i=0;i<n;i++)
-  //   {f>>v[i];
-  //    maxi=max(v[i],maxi);
-  //    int x=v[i];
-  //       nrc=0;
-  //       while (x)
-  //       { nrc++;
-  //         x/=10;
-  //       }
-  //       nrcifremax=max(nrcifremax, nrc);
-  //       x=v[i];
-  //       nrc=0;
-  //       while (x)
-  //       { nrc++;
-  //         x/=16;
-  //       }
-  //       pasimax=max(pasimax, nrc);
-  //   }
-  n=10000001;
-  for (int i=0;i<10000001;i++)
+  n=1001;
+  for (int i=0;i<n;i++)
     { v[i]=1000000000+rand()%2147483646;
       maxi=max(v[i],maxi);
       int x=v[i];
@@ -222,7 +204,7 @@ int main()
 
 //CountSort
 
-  if (maxi>1000001) cout<<"Prea mari numerele sefu";
+  if (maxi>1000001) cout<<"Prea mari numerele sefu\n";
   else 
   { auto start4 = high_resolution_clock::now();
     CountSort();
@@ -236,17 +218,29 @@ int main()
 
 //Insertion Sort
 
-  // auto start5 = high_resolution_clock::now();
-  // InsertionSort();
-  // auto stop5 = high_resolution_clock::now();
-  // auto duration5 = duration_cast<microseconds>(stop5 - start5);
+  auto start5 = high_resolution_clock::now();
+  InsertionSort();
+  auto stop5 = high_resolution_clock::now();
+  auto duration5 = duration_cast<microseconds>(stop5 - start5);
 
-  // cout << "Time taken by function InsertionSort: "
-  //      << duration5.count() << " microseconds" << endl;
+  cout << "Time taken by function InsertionSort: "
+       << duration5.count() << " microseconds" << endl;
 
-  for(int i=0;i<10000001;i++)
+//IntroSort
+
+  ResetareVector();
+
+  auto start6 = high_resolution_clock::now();
+  sort(v, v+n);
+  auto stop6 = high_resolution_clock::now();
+  auto duration6 = duration_cast<microseconds>(stop6 - start6);
+
+  cout << "Time taken by function IntroSort: "
+       << duration6.count() << " microseconds" << endl;
+
+  for(int i=0;i<n;i++)
     { g<<aux[i]<<" ";
-      if(i%100000==0 && i>1) g<<'\n';
+      if(i%100==0 && i>1) g<<'\n';
     }
 
   return 0;
